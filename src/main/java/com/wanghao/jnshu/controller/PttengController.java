@@ -27,8 +27,6 @@ import java.util.List;
 
 public class PttengController {
     @Autowired
-    private TokensServiceImpl tokensService;
-    @Autowired
     private UserServiceImpl userService;
     @Autowired
     private PhotoServiceImpl photoService;
@@ -93,12 +91,11 @@ public class PttengController {
             //待加密内容
             long id=userService.selectToUsername(username).getId();
             long creatDate=new Date().getTime();
-            String str = ""+id+creatDate;
+            String str = id+"="+creatDate;
             //加密操作
             byte[] result = DesUtil.desCrypto(str,"12345678");
             //把加密的字节转换为16进制
             String resules= TypeUtil.bytesToHexString(result);
-            tokensService.insert(id,resules,creatDate);
             Cookie cookie = new Cookie("token",resules);
             cookie.setMaxAge(60*60*24*7);//保留7天
             httpServletResponse.addCookie(cookie);

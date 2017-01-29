@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-01-28 19:23:17
+Date: 2017-01-29 14:09:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -155,32 +155,6 @@ INSERT INTO `student` VALUES ('3', '242424.png', '周杰伦', 'js', '百度技�
 INSERT INTO `student` VALUES ('4', '242424.png', '陈奕迅', 'pm', '百度技术总监：互联网基础服务领域，从事虚拟主机，云主机，域名。 曾任新网高级技术经理，负责技术研发，团队管理与建设。');
 
 -- ----------------------------
--- Table structure for `tokens`
--- ----------------------------
-DROP TABLE IF EXISTS `tokens`;
-CREATE TABLE `tokens` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username_id` bigint(20) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `create_date` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tokens
--- ----------------------------
-INSERT INTO `tokens` VALUES ('1', '0', '72a72648b8a2b7b91bbf09570b1627a9feb959b7d4642fcb', '0');
-INSERT INTO `tokens` VALUES ('2', '0', '72a72648b8a2b7b93d170f7444a7c4dafeb959b7d4642fcb', '0');
-INSERT INTO `tokens` VALUES ('3', '0', '3fd11aac5b92841e1e42e54708e9658e0ca1f353faaee02a', '0');
-INSERT INTO `tokens` VALUES ('4', '0', '72a72648b8a2b7b9c62b9182f18ee9cafeb959b7d4642fcb', '0');
-INSERT INTO `tokens` VALUES ('5', '0', '72a72648b8a2b7b9996d587e0154ff13feb959b7d4642fcb', '0');
-INSERT INTO `tokens` VALUES ('6', '111', 'ceshi', '222');
-INSERT INTO `tokens` VALUES ('7', '2', '5c8ba7005fc0a505975fcf996262ddf8', '1485532885403');
-INSERT INTO `tokens` VALUES ('8', '111', 'ceshi', '222');
-INSERT INTO `tokens` VALUES ('9', '111', 'ceshi', '222');
-INSERT INTO `tokens` VALUES ('10', '111', 'ceshi', '222');
-
--- ----------------------------
 -- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -198,6 +172,3 @@ INSERT INTO `user` VALUES ('2', 'abc', '202cb962ac59075b964b07152d234b70');
 INSERT INTO `user` VALUES ('3', 'wanghao', '23d21dfee9d6f6fd1e3495bfc2869646');
 INSERT INTO `user` VALUES ('6', 'wang', '23d21dfee9d6f6fd1e3495bfc2869646');
 INSERT INTO `user` VALUES ('7', 'wwwwww', 'd785c99d298a4e9e6e13fe99e602ef42');
-INSERT INTO `user` VALUES ('8', 'abc', '202cb962ac59075b964b07152d234b70');
-INSERT INTO `user` VALUES ('9', 'abc', '202cb962ac59075b964b07152d234b70');
-INSERT INTO `user` VALUES ('10', 'abc', '202cb962ac59075b964b07152d234b70');

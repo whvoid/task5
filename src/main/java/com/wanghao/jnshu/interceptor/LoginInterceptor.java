@@ -1,6 +1,8 @@
 package com.wanghao.jnshu.interceptor;
 
-import com.wanghao.jnshu.service.impl.TokensServiceImpl;
+import com.wanghao.jnshu.Util.DesUtil;
+import com.wanghao.jnshu.Util.TypeUtil;
+import com.wanghao.jnshu.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
-    private TokensServiceImpl tokensService;
+    private UserServiceImpl userService;
 
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         Cookie[] cookie=httpServletRequest.getCookies();
@@ -22,7 +24,21 @@ public class LoginInterceptor implements HandlerInterceptor {
             for (int i=0;i<cookie.length;i++){
                 if (cookie[i].getName().equals("token")){
                     String token=cookie[i].getValue();
-                    if (tokensService.select(token)){
+                    byte[] tk= TypeUtil.hexStringToByte(token);
+                    byte[] tk1= DesUtil.decrypt(tk,"12345678");
+                    String tk2=new String(tk1);
+                    String id="";
+                    String time="";
+                    for (int j=0;j<tk2.length();j++){
+                        char c=tk2.charAt(j);
+                        if (c=='='){
+                            for (int k=j+1;k<tk2.length();k++)
+                                time=time+tk2.charAt(k);
+                            break;
+                        }
+                        id=id+c;
+                    }
+                    if (userService.select(Long.parseLong(id))!=null){
 
                         return true;
                     }

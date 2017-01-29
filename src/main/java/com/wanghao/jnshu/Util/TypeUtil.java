@@ -4,19 +4,40 @@ package com.wanghao.jnshu.Util;
  * Created by WangHao on 2017/1/27.
  */
 public class TypeUtil {
-    public static String bytesToHexString(byte[] src){
-        StringBuilder stringBuilder = new StringBuilder();
-        if (src == null || src.length <= 0) {
-            return null;
+    /*
+        * 把16进制字符串转换成字节数组 @param hex @return
+        */
+    public static byte[] hexStringToByte(String hex) {
+        int len = (hex.length() / 2);
+        byte[] result = new byte[len];
+        char[] achar = hex.toCharArray();
+        for (int i = 0; i < len; i++) {
+            int pos = i * 2;
+            result[i] = (byte) (toByte(achar[pos]) << 4 | toByte(achar[pos + 1]));
         }
-        for (int i = 0; i < src.length; i++) {
-            int v = src[i] & 0xFF;
-            String hv = Integer.toHexString(v);
-            if (hv.length() < 2) {
-                stringBuilder.append(0);
-            }
-            stringBuilder.append(hv);
+        return result;
+    }
+
+    private static byte toByte(char c) {
+        byte b = (byte) "0123456789ABCDEF".indexOf(c);
+        return b;
+    }
+
+    /**
+     * 把字节数组转换成16进制字符串
+     *
+     * @param bArray
+     * @return
+     */
+    public static String bytesToHexString(byte[] bArray) {
+        StringBuffer sb = new StringBuffer(bArray.length);
+        String sTemp;
+        for (int i = 0; i < bArray.length; i++) {
+            sTemp = Integer.toHexString(0xFF & bArray[i]);
+            if (sTemp.length() < 2)
+                sb.append(0);
+            sb.append(sTemp.toUpperCase());
         }
-        return stringBuilder.toString();
+        return sb.toString();
     }
 }

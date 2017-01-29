@@ -1,4 +1,3 @@
-com\wanghao\jnshu\Util\MD5UtilTest.class
-com\wanghao\jnshu\service\impl\TokensServiceImplTest.class
 com\wanghao\jnshu\dao\PhotosDaoTest.class
+com\wanghao\jnshu\Util\MD5UtilTest.class
 com\wanghao\jnshu\service\impl\PhotoServiceImplTest.class
